@@ -1,0 +1,29 @@
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"> 
+<!DOCTYPE html>
+<html>
+  <head>
+    <%= favicon_link_tag 'logo.svg' %>
+    <title>Crypto</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+    <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+
+    <%= javascript_importmap_tags %>
+  </head>
+
+  <body>
+    <nav>
+      <div class="nav-wrapper">
+        <a href="#" class="brand-logo">Logo</a>
+        <ul id="nav-mobile" class="right hide-on-med-and-down">
+          <li><a href="sass.html">Sass</a></li>
+        </ul>
+      </div>
+    </nav>    
+    <div class="container">      
+      <%= yield %>
+    </div>
+  </body>
+</html>
