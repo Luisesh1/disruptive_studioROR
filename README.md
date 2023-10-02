@@ -1,80 +1,49 @@
-# README
-
-This README would normally document whatever steps are necessary to get the
-application up and running.
-
-Things you may want to cover:
-
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
-
-
-Documentación del Proyecto Ruby on Rails v7
+Documentación para la Configuración del Proyecto Ruby on Rails v7
 Preparativos
-Asegúrate de seguir estos preparativos antes de ejecutar tu proyecto Ruby on Rails v7:
+Antes de ejecutar el proyecto, hay varios comandos que debería ejecutar para asegurarse de que tiene todas las dependencias necesarias y que su base de datos está actualizada.
 
-Instalación de Dependencias
-Ejecuta el siguiente comando para instalar todas las dependencias de tu proyecto:
+Instalación de las Dependencias
 
-shell
-Copy code
-bundle install
+Use el siguiente comando para instalar todas las gemas necesarias listadas en su Gemfile:
+
+```ruby bundle install ```
+
 Migración de la Base de Datos
-Asegúrate de que tu base de datos esté actualizada. Ejecuta las migraciones con el siguiente comando:
 
-shell
-Copy code
-rails db:migrate
-Importación de Datos desde un Archivo CSV
-Si deseas importar datos desde un archivo CSV, utiliza la tarea personalizada csv_import:import. Asegúrate de proporcionar la ruta completa al archivo CSV como argumento. Por ejemplo:
+Ejecute el siguiente comando para realizar cualquier migración pendiente en su base de datos:
 
-shell
-Copy code
-rake csv_import:import['public/csvs/origen.csv']
-Precompilación de Recursos Assets
-Para compilar los recursos de tu aplicación, ejecuta el siguiente comando:
+```ruby rails db:migrate ```
 
-shell
-Copy code
-rake assets:precompile
-Configuración de API Key
-Edición de Credenciales
-Para configurar tu API Key en el proyecto, utiliza las credenciales de Rails. Ejecuta el siguiente comando para editar las credenciales:
+Importación de los Datos CSV
 
-shell
-Copy code
-rails credentials:edit
-Agregar la API Key
-Dentro del archivo de credenciales, agrega tu API Key en el siguiente formato:
+Si tiene un archivo CSV que desea importar a su base de datos, puede usar el comando Rake. Reemplace 'public/csvs/origen.csv' con la ruta de su archivo CSV.
 
-yaml
-Copy code
-coinapi_key: xxxxxxxxxxxxxxxxxxxx
-Iniciar el Proyecto
-Una vez que hayas realizado todos los preparativos y configurado tu API Key, puedes iniciar tu proyecto Ruby on Rails v7 con el siguiente comando:
+```ruby rake csv_import:import['public/csvs/origen.csv'] ```
 
-shell
-Copy code
-rails s
-¡Tu proyecto estará en funcionamiento y listo para su uso!
+Precompilación de los Activos
 
-¡Disfruta de tu desarrollo con Ruby on Rails v7!
+Use el siguiente comando para precompilar sus activos para producción:
 
+```ruby rake assets:precompile ```
 
+Instalación de la API Key
+Necesitará configurar su API key en las credenciales de Rails. Siga los siguientes pasos:
 
+Edite sus Credenciales
 
+Para editar sus credenciales, utilice el siguiente comando:
+
+```ruby rails credentials:edit ```
+
+Añada su API Key
+
+Añada su API key en el formato siguiente:
+
+```yaml coinapi_key: xxxxxxxxxxxxxxxxxxxx ```
+
+Inicio del Proyecto
+Una vez que ha completado todos los pasos anteriores, está listo para iniciar su proyecto. Use el siguiente comando para iniciar su servidor de Rails:
+
+```ruby rails s ``` ```
+
+Esencialmente, lo que esta cadena de texto hace es mostrar el procedimiento para instalar, configurar y ejecutar el proyecto. Está escrita en el formato de markdown, que es el formato utilizado para el archivo README.md en cualquier repositorio de GitHub. Las partes encerradas entre tres acentos graves (`) se muestran como bloques de código.
