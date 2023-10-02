@@ -8,27 +8,26 @@
   </div>
 </div>
 <div class="row">
-  <%@cryptoCurrencys.each do |currency|%>
-    <% assetBalance = currency.calculateAssetBalance(@assetsInfo[currency.name][:price])%>
+  <%@assetsInfo.each do |asset|%>
     <div class="col s12 m4">
       <div class="card darken-1">
         <div class="card-content">
-          <span class="card-title center-align">Proyecion de <%= currency.name%></span>
+          <span class="card-title center-align">Proyecion de <%= asset[:name]%></span>
           <p>
           <div class="row">
             <div class=" col s12 m6 l6 offset-m3 offset-l3 ">
-              <%=image_tag @assetsInfo[currency.name][:iconUrl], alt: 'Icono de ' + currency.name,  class: "responsive-img center-align"%>
+              <%=image_tag asset[:iconUrl], alt: 'Icono de ' + asset[:name],  class: "responsive-img center-align"%>
             </div>
           </div>
               <div class="row">
                 <div class="input-field col s12 m12 l12">
-                  <input id="first_name2" type="text" class="validate" value=<%= currency.initialBalance%>>
+                  <input id="first_name2" type="text" class="validate" value=<%= asset[:initialBalance]%>>
                   <label class="active" for="first_name2">Cantidad a Invertir</label>
                 </div>
               </div>
-              <p> interes Mensual: <b> <%= currency.monthlyInterest%>% </b> </p>
-              <p id="invAnualEarns"> ganancia Anual: <b> <%= currency.calculateEarns%> </b> </p>
-              <p id="invAssetEquivalence"> Equivalencia en <%= currency.name%>: <b> <%= assetBalance %> </b> </p>
+              <p> interes Mensual: <b> <%= asset[:monthlyInterest]%>% </b> </p>
+              <p id="invAnualEarns"> ganancia Anual: <b> <%= asset[:earns]%> </b> </p>
+              <p id="invAssetEquivalence"> Equivalencia en <%= asset[:name]%>: <b> <%= asset[:assetBalance] %> </b> </p>
           </p>
         </div>
       </div>
@@ -53,10 +52,10 @@
             <tbody>
               <% @assetsInfo.each do |asset|%>
                 <tr>
-                  <td><%= asset[1][:name] %></td>
-                  <td><%= asset[1][:assetId] %></td>
-                  <td class="price" id= "<%= asset[1][:assetId]%>"><%= asset[1][:price] %></td>
-                  <td><%= image_tag asset[1][:iconUrl], alt: 'Icono de ' +  asset[1][:name],  class: "responsive-img icono-52px"  %></td>
+                  <td><%= asset[:name] %></td>
+                  <td><%= asset[:assetId] %></td>
+                  <td class="price" id= "<%= asset[:assetId]%>"><%= asset[:price] %></td>
+                  <td><%= image_tag asset[:iconUrl], alt: 'Icono de ' +  asset[:name],  class: "responsive-img icono-52px"  %></td>
                 </tr>
               <% end%>
             </tbody>

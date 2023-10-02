@@ -18,7 +18,7 @@ socket.onopen = function (event) {
         "type": "hello",
         "apikey": "A7CD874F-84F1-4614-8B61-D8BBC6FA5F0D",
         "subscribe_data_type": ["trade"],
-        "subscribe_filter_symbol_id": ["BITSTAMP_SPOT_BTC_USD$", "BITFINEX_SPOT_ETH_USD$"]
+        "subscribe_filter_symbol_id": ["COINBASE_SPOT_BTC_USD$"]
     }));
 };
 
