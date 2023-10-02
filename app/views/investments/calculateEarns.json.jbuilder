@@ -8,4 +8,3 @@ json.assetInfo do
     json.price @assetInfo[:price]
     json.assetId @assetInfo[:assetId]
 end
-  

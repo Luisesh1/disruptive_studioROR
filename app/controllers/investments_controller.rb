@@ -30,7 +30,8 @@ class InvestmentsController < ApplicationController
         monthlyInterest: asset.monthlyInterest,
         initialBalance: asset.initialBalance,
         assetBalance: asset.calculateAssetBalance(assetData["price_usd"]),
-        earns: asset.calculateEarns()
+        earns: asset.calculateEarns(),
+        currencyId: asset.id
       })
     end
     info

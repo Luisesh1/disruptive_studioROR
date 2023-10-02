@@ -1,9 +1,8 @@
 Rails.application.routes.draw do
-  get 'investments/index'
-  # get 'investments/calculateEarns'
+  
   # config/routes.rb
-  resources :investments, only: [:index, :calculateEarns]
-
+  resources :investments, only: [:index]
+  get 'investments/calculateEarns'
   
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 

@@ -12,34 +12,51 @@ eagerLoadControllersFrom("controllers", application)
 
 
 
-const socket = new WebSocket('wss://ws.coinapi.io/v1/');
-socket.onopen = function (event) {
-    socket.send(JSON.stringify({
-        "type": "hello",
-        "apikey": "A7CD874F-84F1-4614-8B61-D8BBC6FA5F0D",
-        "subscribe_data_type": ["trade"],
-        "subscribe_filter_symbol_id": ["COINBASE_SPOT_BTC_USD$"]
-    }));
-};
+let excecuteWs = (data) => {
+    let assets_ids = data.map(i => `COINBASE_SPOT_${i.assetId}_USD$`)
+    console.log(assets_ids);
+    const socket = new WebSocket('wss://ws.coinapi.io/v1/');
+    socket.onopen = function (event) {
+        socket.send(JSON.stringify({
+            "type": "hello",
+            "apikey": "24D352AA-00DB-4FBC-BB20-4A07FE573363",
+            "subscribe_data_type": ["trade"],
+            "subscribe_filter_symbol_id": assets_ids
+        }));
+    };
 
-socket.onmessage = function (event) {
-        
+    socket.onmessage = function (event) {
         const data = JSON.parse(event.data);
+        $('#'+data.symbol_id).text(data.price);
         console.log(data);
-        // Add new data to the chart
-        // chart.data.labels.push(data.time_exchange);
-        // chart.data.datasets[0].data.push(data.price);
-        
-        // // Remove the oldest data point if there are more than 50
-        // if (chart.data.labels.length > 50) {
-        //     chart.data.labels.shift();
-        //     chart.data.datasets[0].data.shift();
-        // }
-        
-        // Update the chart
-        // chart.update();
-};
+    };
 
-socket.onerror = function (error) {
-    console.log(`WebSocket error: ${error}`);
-};
+    socket.onerror = function (error) {
+        console.log(`WebSocket error: ${error}`);
+    };
+
+}
+
+$.get("/investments.json", excecuteWs);
+
+let timeoutId;
+let buscar = (context) => {
+    let id = $(context).data('id');
+    let balance = $(context).val();
+    $(`#earns_${id}`).text('');
+    $(`#assetBalance_${id}`).text('');
+    $.get(`/investments/calculateEarns.json?id=${id}&balance=${balance}`, (data) => {
+        data = data.assetInfo;
+        console.log(id);
+        console.log(data);
+        $(`#earns_${id}`).text(data.anualEarns);
+        $(`#assetBalance_${id}`).text(data.assetBalance);
+    })
+}
+
+$(".balanceInput").on("keyup", function() {
+    let context = this;
+    clearTimeout(timeoutId);
+    timeoutId = setTimeout(() => buscar(context), 1000);
+    
+});

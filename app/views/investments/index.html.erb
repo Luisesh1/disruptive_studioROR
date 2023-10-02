@@ -21,13 +21,13 @@
           </div>
               <div class="row">
                 <div class="input-field col s12 m12 l12">
-                  <input id="first_name2" type="text" class="validate" value=<%= asset[:initialBalance]%>>
+                  <input data-id="<%= asset[:currencyId]%>" type="number" class="balanceInput" value=<%= asset[:initialBalance]%>>
                   <label class="active" for="first_name2">Cantidad a Invertir</label>
                 </div>
               </div>
               <p> interes Mensual: <b> <%= asset[:monthlyInterest]%>% </b> </p>
-              <p id="invAnualEarns"> ganancia Anual: <b> <%= asset[:earns]%> </b> </p>
-              <p id="invAssetEquivalence"> Equivalencia en <%= asset[:name]%>: <b> <%= asset[:assetBalance] %> </b> </p>
+              <p> ganancia Anual: <b id="earns_<%= asset[:currencyId]%>" > <%= asset[:earns]%> </b> </p>
+              <p> Equivalencia en <%= asset[:name]%>: <b id="assetBalance_<%= asset[:currencyId]%>"> <%= asset[:assetBalance] %> </b> </p>
           </p>
         </div>
       </div>
@@ -54,7 +54,7 @@
                 <tr>
                   <td><%= asset[:name] %></td>
                   <td><%= asset[:assetId] %></td>
-                  <td class="price" id= "<%= asset[:assetId]%>"><%= asset[:price] %></td>
+                  <td id= "COINBASE_SPOT_<%= asset[:assetId] %>_USD"><%= asset[:price] %></td>
                   <td><%= image_tag asset[:iconUrl], alt: 'Icono de ' +  asset[:name],  class: "responsive-img icono-52px"  %></td>
                 </tr>
               <% end%>
