@@ -8,8 +8,8 @@ gem 'materialize-sass'
 gem 'sassc'
 gem 'jquery-rails'
 gem 'csv'
-gem 'dotenv'
-
+gem 'rails-controller-testing'
+gem 'mocha', require: false
 
 # Bundle edge Rails instead: gem "rails", github: "rails/rails", branch: "main"
 gem "rails", "~> 7.0.8"
@@ -78,5 +78,5 @@ group :test do
   # Use system testing [https://guides.rubyonrails.org/testing.html#system-testing]
   gem "capybara"
   gem "selenium-webdriver"
-
+  gem 'webmock'
 end

@@ -28,7 +28,6 @@ let excecuteWs = (data) => {
     socket.onmessage = function (event) {
         const data = JSON.parse(event.data);
         $('#'+data.symbol_id).text(data.price);
-        console.log(data);
     };
 
     socket.onerror = function (error) {
