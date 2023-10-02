@@ -1,0 +1,4 @@
+Nombre, abreviatura, precio en dolares, iconUrl
+<% @assetsInfo.each do |asset| %>
+  <%= asset[:name] %>, <%= asset[:assetId] %>, <%= asset[:price] %>,  <%= asset[:iconUrl] %>
+<% end %>

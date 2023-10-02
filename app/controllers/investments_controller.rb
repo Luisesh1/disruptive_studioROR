@@ -36,4 +36,9 @@ class InvestmentsController < ApplicationController
     info
   end
 
+  def downloads
+    cryptoCurrencys = CryptoCurrency.all
+    @assetsInfo = integrateCoinApiData(cryptoCurrencys)
+  end
+
 end
