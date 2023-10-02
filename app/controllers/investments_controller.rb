@@ -1,5 +1,4 @@
 class InvestmentsController < ApplicationController
-
   def index
     cryptoCurrencys = CryptoCurrency.all
     @assetsInfo = integrateCoinApiData(cryptoCurrencys)

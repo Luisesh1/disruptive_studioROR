@@ -11,6 +11,15 @@ eagerLoadControllersFrom("controllers", application)
 // lazyLoadControllersFrom("controllers", application)
 
 
+function formatCurrency(amount) {
+    let currencyCode = 'USD'
+    const formattedAmount = new Intl.NumberFormat('en-US', {
+        style: 'currency',
+        currency: currencyCode,
+    }).format(amount);
+
+    return formattedAmount;
+}
 
 let excecuteWs = (data) => {
     let assets_ids = data.map(i => `COINBASE_SPOT_${i.assetId}_USD$`)
@@ -27,7 +36,7 @@ let excecuteWs = (data) => {
 
     socket.onmessage = function (event) {
         const data = JSON.parse(event.data);
-        $('#'+data.symbol_id).text(data.price);
+        $('#'+data.symbol_id).text(data.price.toFixed(4));
     };
 
     socket.onerror = function (error) {
@@ -42,14 +51,19 @@ let timeoutId;
 let buscar = (context) => {
     let id = $(context).data('id');
     let balance = $(context).val();
+    if (balance < 0){
+        $(context).val(0)
+        balance = 0;
+    }
+        
     $(`#earns_${id}`).text('');
     $(`#assetBalance_${id}`).text('');
     $.get(`/investments/calculateEarns.json?id=${id}&balance=${balance}`, (data) => {
         data = data.assetInfo;
         console.log(id);
         console.log(data);
-        $(`#earns_${id}`).text(data.anualEarns);
-        $(`#assetBalance_${id}`).text(data.assetBalance);
+        $(`#earns_${id}`).text(formatCurrency(data.anualEarns));
+        $(`#assetBalance_${id}`).text(data.assetBalance.toFixed(4));
     })
 }
 

@@ -21,13 +21,13 @@
           </div>
               <div class="row">
                 <div class="input-field col s12 m12 l12">
-                  <input data-id="<%= asset[:currencyId]%>" type="number" class="balanceInput" value=<%= asset[:initialBalance]%>>
+                  <input data-id="<%= asset[:currencyId]%>" type="number" class="balanceInput balanceInputContent" value=<%= asset[:initialBalance]%>>
                   <label class="active" for="first_name2">Cantidad a Invertir</label>
                 </div>
               </div>
               <p> interes Mensual: <b> <%= asset[:monthlyInterest]%>% </b> </p>
-              <p> ganancia Anual: <b id="earns_<%= asset[:currencyId]%>" > <%= asset[:earns]%> </b> </p>
-              <p> Equivalencia en <%= asset[:name]%>: <b id="assetBalance_<%= asset[:currencyId]%>"> <%= asset[:assetBalance] %> </b> </p>
+              <p> ganancia Anual: <b id="earns_<%= asset[:currencyId] %>" > <%= number_to_currency(asset[:earns], unit: '$', format: '%u %n')%> </b> </p>
+              <p> Equivalencia en <%= asset[:name]%>: <b id="assetBalance_<%= asset[:currencyId]%>"> <%= number_with_precision(asset[:assetBalance], precision: 4) %> </b> </p>
           </p>
         </div>
       </div>
@@ -54,7 +54,7 @@
                 <tr>
                   <td><%= asset[:name] %></td>
                   <td><%= asset[:assetId] %></td>
-                  <td id= "COINBASE_SPOT_<%= asset[:assetId] %>_USD"><%= asset[:price] %></td>
+                  <td id= "COINBASE_SPOT_<%= asset[:assetId] %>_USD"><%= number_with_precision(asset[:price], precision: 4) %></td>
                   <td><%= image_tag asset[:iconUrl], alt: 'Icono de ' +  asset[:name],  class: "responsive-img icono-52px"  %></td>
                 </tr>
               <% end%>
@@ -64,8 +64,8 @@
       </div>
     </div>
     <div class="col s12 m12">
-      <%= link_to "descargar csv", '/investments/downloads.csv', target: "_blank" , class: "waves-effect waves-light btn"%> 
-      <%= link_to "descargar json", '/investments/downloads.json', target: "_blank", class: "waves-effect waves-light btn" %>
+      <%= link_to "descargar csv", '/investments/downloads.csv', target: "_blank" , class: "waves-effect waves-light btn  teal lighten-2"%> 
+      <%= link_to "descargar json", '/investments/downloads.json', target: "_blank", class: "waves-effect waves-light btn  teal lighten-2" %>
 
     </div>
 </div>
