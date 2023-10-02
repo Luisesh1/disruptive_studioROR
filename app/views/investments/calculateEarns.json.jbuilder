@@ -3,5 +3,6 @@ json.cryptoCurrency do
     json.balance @cryptoCurrency.initialBalance
     json.anualEarns @cryptoCurrency.calculateEarns
     json.monthlyInterest @cryptoCurrency.monthlyInterest
+    json.assetBalance @assetBalance
 end
   

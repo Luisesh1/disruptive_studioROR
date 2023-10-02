@@ -8,7 +8,7 @@ gem 'materialize-sass'
 gem 'sassc'
 gem 'jquery-rails'
 gem 'csv'
-
+gem 'dotenv'
 
 
 # Bundle edge Rails instead: gem "rails", github: "rails/rails", branch: "main"

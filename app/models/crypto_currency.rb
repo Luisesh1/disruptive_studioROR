@@ -6,4 +6,8 @@ class CryptoCurrency < ApplicationRecord
         anualEarns = monthlyEarns *  nMonths
     end
 
+    def calculateAssetBalance(price)
+        (1 / price.to_f) * initialBalance
+    end
+
 end
