@@ -46,3 +46,5 @@ Una vez que ha completado todos los pasos anteriores, está listo para iniciar s
 
 ``` rails s ```
 
+
+![Pantalla](./pantalla.png)
